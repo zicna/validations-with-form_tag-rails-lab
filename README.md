@@ -25,3 +25,5 @@ make sure they are calling save and update correctly
 make sure they print out full messages for an error summary on invalid forms
 fields should be prefilled
 error class on inputs
+
+<a href='https://learn.co/lessons/validations-with-form_tag-rails-lab' data-visibility='hidden'>View this lesson on Learn.co</a>
