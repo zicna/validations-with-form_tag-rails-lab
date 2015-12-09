@@ -1,29 +1,40 @@
 # Validations with `form_tag`
 
-## Objectives
+# Objectives
 
-- render or redirect based on validation of instance in create/update
+- Render or redirect based on validation of instance in create/update
 - Prefill in form values based on an instance
 - Print out full error messages based on an invalid instance
-- introspect on errors for a field
-- apply an error class to a field conditionally based on errors on a field
+- Introspect on errors for a field
+- Apply an error class to a field conditionally based on errors on a field
 
-## Notes
+# Requirements
 
-Just give them the models and migrations.
+## Validations
 
-They have to add
+1. Add validations to `Author` such that...
+  1. `name` is not blank
+  1. `email` is unique
+  1. `phone_number` is exactly 10 digits long
+1. Add validations to `Post` such that...
+  1. `title` is not blank
+  1. `content` is at least 100 characters long
+  1. `category` is either `"Fiction"` or `"Non-Fiction"`
 
-- Validations
-- Routes
-- Controllers
-- Actions
-- Form Views
+## Basic Routes & Controllers
 
-make sure they are redirectnig and rendering correctly
-make sure they are calling save and update correctly
-make sure they print out full messages for an error summary on invalid forms
-fields should be prefilled
-error class on inputs
+1. Create `show`, `new`, `edit`, `create`, and `update` routes for both models.
+1. Define controller actions for `show`, `new`, and `edit`.
+1. Define the "valid path" for the `create` and `update` controller actions.
+1. Define the "invalid path" for the `create` and `update` controller actions.
+
+## Forms
+
+1. Create forms with `form_tag` for both models' `new` and `edit` actions.
+1. Prefill already-submitted forms with the invalid data when re-rendering.
+1. Display a list of errors at the top of forms when an invalid action is
+   attempted. They should be contained in an element with id
+   `error_explanation`, and each error should have its own `<li>`.
+1. Conditionally wrap each field in a `.field_with_errors` div if it has errors.
 
 <a href='https://learn.co/lessons/validations-with-form_tag-rails-lab' data-visibility='hidden'>View this lesson on Learn.co</a>
