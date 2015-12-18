@@ -23,6 +23,7 @@
 
 ## Basic Routes & Controllers
 
+1. Create controllers for both models.
 1. Create `show`, `new`, `edit`, `create`, and `update` routes for both models.
 1. Define controller actions for `show`, `new`, and `edit`.
 1. Define the "valid path" for the `create` and `update` controller actions.
