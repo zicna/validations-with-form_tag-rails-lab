@@ -1,19 +1,13 @@
-RSpec.describe "authors/new" do
-  before do
-    assign(:author, author)
-  end
+RSpec.describe "authors/new", type: :feature do
+  before(:each) { visit new_author_path }
 
   describe "a blank form" do
-    let(:author) { Author.new }
-
-    before(:each) { render }
-
     it "does not render an error list" do
-      assert_select "#error_explanation", false
+      expect(page).not_to have_selector("#error_explanation")
     end
 
     it "does not render error fields" do
-      assert_select ".field_with_errors", 0
+      expect(page).not_to have_selector(".field_with_errors")
     end
   end
 
@@ -21,32 +15,34 @@ RSpec.describe "authors/new" do
     let(:invalid_attributes) do
       { email: "bro@sbahj.info", phone_number: "555035995" }
     end
-    let(:author) do
-      Author.new(invalid_attributes).tap do |a|
-        a.errors.add(:name, "cannot be blank")
-        a.errors.add(:email, "is already taken")
-        a.errors.add(:phone_number, "must be 10 characters long.")
-      end
+
+    before(:each) do
+      Author.create(
+        email: invalid_attributes[:email],
+        name: "Valid",
+        phone_number: "5550350001"
+      )
+
+      visit new_author_path
+      fill_in "Email", with: invalid_attributes[:email]
+      fill_in "Phone Number", with: invalid_attributes[:phone_number]
+      click_button "Create"
     end
 
-    before(:each) { render }
-
     it "renders an error list" do
-      assert_select "#error_explanation li", 3
+      expect(all("#error_explanation li").size).to eq(3)
     end
 
     it "prefills fields" do
-      assert_select "input[name=name]" do |element|
-        expect(element.attr("value")).to be_nil
-      end
-      assert_select "input[name=email][value=?]", invalid_attributes[:email]
-      assert_select "input[name=phone_number][value=?]", invalid_attributes[:phone_number]
+      expect(find("input[name=name]").value).to be_empty
+      expect(find("input[name=email]").value).to eq(invalid_attributes[:email])
+      expect(find("input[name=phone_number]").value).to eq(invalid_attributes[:phone_number])
     end
 
     it "has error class on bad fields" do
-      assert_select ".field_with_errors input[name=name]"
-      assert_select ".field_with_errors input[name=email]"
-      assert_select ".field_with_errors input[name=phone_number]"
+      expect(page).to have_css(".field_with_errors input[name=name]")
+      expect(page).to have_css(".field_with_errors input[name=email]")
+      expect(page).to have_css(".field_with_errors input[name=phone_number]")
     end
   end
 end
