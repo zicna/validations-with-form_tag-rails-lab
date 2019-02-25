@@ -29,7 +29,7 @@ RSpec.describe AuthorsController do
     end
     let(:bro_found) { Author.find_by(name: bro_attributes[:name]) }
 
-    before { post :create, bro_attributes }
+    before { post :create, params: bro_attributes }
 
     it "creates successfully" do
       expect(bro_found).to be_a(Author)
