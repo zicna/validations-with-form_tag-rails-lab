@@ -14,7 +14,7 @@ RSpec.describe AuthorsController do
 
   describe "showing an author" do
     it "shows an author" do
-      get :show, id: @author.id
+      get :show, params: { id: @author.id }
       expect(found).to eq(@author)
     end
   end
@@ -71,7 +71,7 @@ RSpec.describe AuthorsController do
     end
 
     it "renders the form again" do
-      post :create, bad_attributes
+      post :create, params: bad_attributes
       expect(response).to render_template(:new)
     end
   end
