@@ -38,4 +38,5 @@
    `error_explanation`, and each error should have its own `<li>`.
 1. Conditionally wrap each field in a `.field_with_errors` div if it has errors.
 
+
 <p data-visibility='hidden'>View <a href='https://learn.co/lessons/validations-with-form_tag-rails-lab' title='Validations with form_tag'>Validations with form_tag</a> on Learn.co and start learning to code for free.</p>
