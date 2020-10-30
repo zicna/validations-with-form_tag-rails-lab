@@ -1,6 +1,6 @@
 # Validations with `form_tag`
 
-# Objectives
+## Objectives
 
 - Render or redirect based on validation of instance in create/update
 - Prefill in form values based on an instance
@@ -8,9 +8,9 @@
 - Introspect on errors for a field
 - Apply an error class to a field conditionally based on errors on a field
 
-# Requirements
+## Requirements
 
-## Validations
+### Validations
 
 1. Add validations to `Author` such that...
   1. `name` is not blank
@@ -21,7 +21,7 @@
   1. `content` is at least 100 characters long
   1. `category` is either `"Fiction"` or `"Non-Fiction"`
 
-## Basic Routes & Controllers
+### Basic Routes & Controllers
 
 1. Create controllers for both models.
 1. Create `show`, `new`, `edit`, `create`, and `update` routes for both models.
@@ -29,7 +29,7 @@
 1. Define the "valid path" for the `create` and `update` controller actions.
 1. Define the "invalid path" for the `create` and `update` controller actions.
 
-## Forms
+### Forms
 
 1. Create forms with `form_tag` for both models' `new` and `edit` actions.
 1. Prefill already-submitted forms with the invalid data when re-rendering.
